@@ -1,138 +1,242 @@
 ---
 layout: post
-title: About
+title: ~About!~
 permalink: /about/
-comments: true
+comments: false
 ---
 
-## As a conversation Starter
-
-Here are some places I have lived.
-
-<comment>
-Flags are made using Wikipedia images
-</comment>
-
 <style>
-    /* Style looks pretty compact, 
-       - grid-container and grid-item are referenced the code 
-    */
-    .grid-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Dynamic columns */
-        gap: 10px;
-    }
-    .grid-item {
-        text-align: center;
-    }
-    .grid-item img {
-        width: 100%;
-        height: 100px; /* Fixed height for uniformity */
-        object-fit: contain; /* Ensure the image fits within the fixed height */
-    }
-    .grid-item p {
-        margin: 5px 0; /* Add some margin for spacing */
-    }
+  /* Base grid layout */
+  #grid_container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+  }
 
-    .image-gallery {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        gap: 10px;
-        }
+  /* Make cards 5 and 6 full-width */
+  #grid_container .game-card:nth-child(5),
+  #grid_container .game-card:nth-child(6) {
+    grid-column: 1 / -1;
+  }
 
-    .image-gallery img {
-        max-height: 150px;
-        object-fit: cover;
-        border-radius: 5px;
-    }
+  /* Horizontal layout ONLY for cards 5 and 6 */
+  #grid_container .wide-card .entry {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  #grid_container .wide-card img {
+    width: 130px;
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 5px;
+  }
+
+  #grid_container .wide-card p {
+    text-align: left;
+    margin: 0;
+  }
+
+  /* Add horizontal spacing for images in cards 1–4 */
+  #grid_container .game-card:not(.wide-card) img {
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+  }
+
+  /* Add horizontal spacing for text in cards 1–4 */
+  #grid_container .game-card:not(.wide-card) .entry {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 </style>
 
-<!-- This grid_container class is used by CSS styling and the id is used by JavaScript connection -->
-<div class="grid-container" id="grid_container">
-    <!-- content will be added here by JavaScript -->
-</div>
+### Intro:
+
+These are my favorite video games!!
+
+<div id="grid_container"></div>
 
 <script>
-    // 1. Make a connection to the HTML container defined in the HTML div
-    var container = document.getElementById("grid_container"); // This container connects to the HTML div
+var outputElement = document.getElementById("grid_container");
+outputElement.innerHTML = "";
 
-    // 2. Define a JavaScript object for our http source and our data rows for the Living in the World grid
-    var http_source = "https://upload.wikimedia.org/wikipedia/commons/";
-    var living_in_the_world = [
-        {"flag": "0/01/Flag_of_California.svg", "greeting": "Hey", "description": "California - forever"},
-        {"flag": "b/b9/Flag_of_Oregon.svg", "greeting": "Hi", "description": "Oregon - 9 years"},
-        {"flag": "b/be/Flag_of_England.svg", "greeting": "Alright mate", "description": "England - 2 years"},
-        {"flag": "e/ef/Flag_of_Hawaii.svg", "greeting": "Aloha", "description": "Hawaii - 2 years"},
-    ];
+// Grouped data structure
+const video_games = [
+  {
+    title: "Minecraft",
+    color: "#4CAF50",
+    entries: [
+      { img: "{{site.baseurl}}/images/about/minecraft wallpaper.webp", note: "Basic Minecraft :) I've played since I was really young and really loved building houses and beating the game." },
+      { img: "{{site.baseurl}}/images/about/minecraft dungeons.jpg", note: "Minecraft Dungeons is a DLC of Minecraft that I got into last year." }
+    ]
+  },
+  {
+    title: "Rise of The Tomb Raider",
+    color: "#6b9dcaff",
+    entries: [
+      { img: "{{site.baseurl}}/images/about/rise cover.webp", note: "The first Tomb Raider game I played - I ABSOLUTELY LOVED ITT!" },
+      { img: "{{site.baseurl}}/images/about/rise dynamic.jpg", note: "The art and surround sound and combat is top-notch! It always felt like I myself was getting shot XD" }
+    ]
+  },
+  {
+    title: "Shadow of The Tomb Raider",
+    color: "#69145bff",
+    entries: [
+      { img: "{{site.baseurl}}/images/about/shadow cover.webp", note: "This game was also a masterpiece!" },
+      { img: "{{site.baseurl}}/images/about/shadow dynamic.webp", note: "I have very vivid memories watching my dad play this as a kid and loving it :)" }
+    ]
+  },
+  {
+    title: "Genshin Impact",
+    color: "#F06292",
+    entries: [
+      { img: "{{site.baseurl}}/images/about/NAHIDA.gif", note: "I really love the art style that this game uses!" },
+      { img: "{{site.baseurl}}/images/about/juanderer.gif", note: "The lore used to be good... I loved the Liyue and Inazuma lore!" }
+    ]
+  },
+  {
+    title: "Destiny 2",
+    color: "#FFB300",
+    entries: [
+      { img: "{{site.baseurl}}/images/about/d2 dynamic 2.jpg", note: "I absolutely ADORE the extensive lore that Bungie has built in the past 12 years of running this game!" },
+      { img: "{{site.baseurl}}/images/about/d2 dynamic.webp", note: "I grew up watching my dad plasy Destiny 1, and when Destiny 2 came out, I was old enough to play as well! The gunplay and combat mechanics are super satisfying too." }
+    ]
+  },
+  {
+    title: "Forza Horizon 5",
+    color: "#1d3284ff",
+    entries: [
+      { img: "{{site.baseurl}}/images/about/forza cover 2.webp", note: "My dad got this game for me along with the Xbox wheel, pedals, and clutch so I can practice driving before I can get my permit." },
+      { img: "{{site.baseurl}}/images/about/forza cover.webp", note: "The scenery and the cars are super sick!" }
+    ]
+  }
+];
 
-    // 3a. Consider how to update style count for size of container
-    // The grid-template-columns has been defined as dynamic with auto-fill and minmax
+// Build each game card
+video_games.forEach((game, index) => {
+  const gameCard = document.createElement("div");
+  gameCard.className = "game-card";
 
-    // 3b. Build grid items inside of our container for each row of data
-    for (const location of living_in_the_world) {
-        // Create a "div" with "class grid-item" for each row
-        var gridItem = document.createElement("div");
-        gridItem.className = "grid-item";  // This class name connects the gridItem to the CSS style elements
-        // Add "img" HTML tag for the flag
-        var img = document.createElement("img");
-        img.src = http_source + location.flag; // concatenate the source and flag
-        img.alt = location.flag + " Flag"; // add alt text for accessibility
+  // Mark cards 5 & 6 as wide
+  if (index === 4 || index === 5) {
+    gameCard.classList.add("wide-card");
+  }
 
-        // Add "p" HTML tag for the description
-        var description = document.createElement("p");
-        description.textContent = location.description; // extract the description
+  gameCard.style.border = `3px solid ${game.color}`;
+  gameCard.style.padding = "16x";
+  gameCard.style.borderRadius = "10px";
+  gameCard.style.background = "#302b2bff";
 
-        // Add "p" HTML tag for the greeting
-        var greeting = document.createElement("p");
-        greeting.textContent = location.greeting;  // extract the greeting
+  const title = document.createElement("h3");
+  title.textContent = game.title;
+  title.style.textAlign = "center";
+  title.style.marginBottom = "5px";
+  title.style.marginTop = "5px";
+  title.style.fontSize = "1.1em";
+  gameCard.appendChild(title);
 
-        // Append img and p HTML tags to the grid item DIV
-        gridItem.appendChild(img);
-        gridItem.appendChild(description);
-        gridItem.appendChild(greeting);
+  const innerColumn = document.createElement("div");
+  innerColumn.style.display = "flex";
+  innerColumn.style.flexDirection = "column";
+  innerColumn.style.gap = "10px";
 
-        // Append the grid item DIV to the container DIV
-        container.appendChild(gridItem);
+  game.entries.forEach(entry => {
+    const item = document.createElement("div");
+    item.className = "entry";
+
+    const img = document.createElement("img");
+    img.src = entry.img;
+    img.alt = game.title;
+
+    // Only shrink images for cards 5 & 6
+    if (index === 4 || index === 5) {
+      img.style.width = "130px";
+      img.style.height = "auto";
+      img.style.flexShrink = "0";
+    } else {
+  img.style.width = "100%";   // or 85%, or 80% — tune to taste
+  img.style.height = "auto";
+  img.style.margin = "0 auto"; // centers the image
     }
+
+    img.style.objectFit = "cover";
+    img.style.borderRadius = "5px";
+
+    const note = document.createElement("p");
+    note.textContent = entry.note;
+    note.style.fontSize = "0.9em";
+    note.style.opacity = "0.8";
+
+    item.appendChild(img);
+    item.appendChild(note);
+    innerColumn.appendChild(item);
+  });
+
+  gameCard.appendChild(innerColumn);
+  outputElement.appendChild(gameCard);
+});
 </script>
+
+### Places I've Lived or Have Family In:
+
+<div class="row">
+<img src="{{site.baseurl}}/images/about/minnesota flag.png" style="height:100px; margin-right:50px;" alt="Minnesota">
+<img src="{{site.baseurl}}/images/about/og flag.png" style="height:100px; margin-right:50px;" alt="Orange County">
+<img src="{{site.baseurl}}/images/about/san diego flag.png" style="height:100px; margin-right:50px;" alt="San Diego">
+<img src="{{site.baseurl}}/images/about/puglia flag.png" style="height:100px; margin-right:50px;" alt="Puglia">
+</div>
+
+- ⭐ **Minnesota** - My dad and I were both born in Minnesota! Once I was born in St. Paul, Minnesota's capital, I stayed there until I was 18 months old, and then my family moved to Irvine, California.
+- ⭐ **Orange County** - I lived in Irvine and attended Woodbury ELementary until I was 7 years old, then I moved to...
+- ⭐ **San Diego** and have lived here since then!
+- ⭐ **Puglia/Italy** My mom was born in Italy, specifically, Puglia, which is one of the south-east regions of Italy. We go back every summer to visit my family there.
+
+
+
 
 ### Journey through Life
 
-Here is what I did at those places
+These are the places I've gone to school:
 
-- 🏫 Lots of Elementary Schools in Tucson, LA, Honolulu, and Glendale (CA)
-- 🏫 Middle and High School in Glendale (CA), Hoover High graduated '77
-- 🎓 Glendale CA Community College, UCLA Extension, LA Wilshire Computer Tech School '77 to '79
-- ⛪ England, London Missionary for Church of Jesus Christ of Latter-day Saints '79 to '81
-- 💼 Culver City, Glendale CA founder at Ashton-Tate, original PC's dBase 2 and 3 '82 to '87
-- 🎓 Eugene Oregon Undergraduate CompSci Degree at University of Oregon (Go Ducks!) '89 to '91
-- 💼 Eugene Oregon, founder and owner @ Microniche `88, Point Control CAD CAM developer '91 to '96
-- 🏢 San Diego CA Qualcomm, Satellite Comm and 1st Mobile OS (BREW) '96 to '19
-- 👨‍🏫 San Diego CA Teacher of Computer Science @ Del Norte High School San Diego '19 to present
+- 🏫 I attended two elementary schools: Woodbury K-6 Elementary and Del Sur Elementary.
+- 🚌 I graduated 5th grade from Del Sur and then attended Oak Valley Middle (6th–8th grade).
+- 📚 I'm currently a freshman at Del Norte High.
 
-### Culture, Family, and Fun
+### My Family
 
-Everything for me, as for many others, revolves around family and faith.
+My family consists of my mom, dad, and my baby brother.
 
-- My mother told me that I was Danish, English. and Irish, here is my researched [family tree]({{site.baseurl}}/images/about/familytree.png)
-- My family is pretty big as I have been married twice, my 1st wife passed away.  We have had 5 kids, 4 adopted by me, 1 biological.  Plus, there are three grandkids.  My name to my grandkids is Abuilito.
-- The gallery of pics has some of my family, fun, culture and faith memories.
+- My dad's side of the family is from Minnesota, USA, with Irish and Northern Italian origins.
+- My mom's side is from Puglia (the "heel" of Italy's "boot"). Many relatives later moved to Northern Italy near the borders with Austria, Germany, and France. Their children learn Italian, German, and English at school.
 
-<comment>
-Gallery of Pics, scroll to the right for more ...
-</comment>
+Some of my most recent favorite pictures — scroll right to see more!
+
+<style>
+.image-gallery {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px 0;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+.image-gallery img {
+  height: 350px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  scroll-snap-align: start;
+  object-fit: cover;
+}
+</style>
+
 <div class="image-gallery">
-  <img src="{{site.baseurl}}/images/about/missionary.jpg" alt="Image 1">
-  <img src="{{site.baseurl}}/images/about/john_tamara.jpg" alt="Image 2">
-  <img src="{{site.baseurl}}/images/about/tamara_fam.jpg" alt="Image 3">
-  <img src="{{site.baseurl}}/images/about/surf.jpg" alt="Image 4">
-  <img src="{{site.baseurl}}/images/about/john_lora.jpg" alt="Image 5">
-  <img src="{{site.baseurl}}/images/about/lora_fam.jpg" alt="Image 6">
-  <img src="{{site.baseurl}}/images/about/lora_fam2.jpg" alt="Image 7">
-  <img src="{{site.baseurl}}/images/about/pj_party.jpg" alt="Image 8">
-  <img src="{{site.baseurl}}/images/about/trent_family.png" alt="Image 9">
-  <img src="{{site.baseurl}}/images/about/claire.jpg" alt="Image 10">
-  <img src="{{site.baseurl}}/images/about/grandkids.jpg" alt="Image 11">
-  <img src="{{site.baseurl}}/images/about/farm.jpg" alt="Image 12">
+    <img src="{{site.baseurl}}/images/about/anthony_selfie.png" alt="Anthony selfie">
+    <img src="{{site.baseurl}}/images/about/d2_fynch.png" alt="Destiny 2 Character">
+    <img src="{{site.baseurl}}/images/about/hoco_pic_w_girls.png" alt="Homecoming with friends">
+    <img src="{{site.baseurl}}/images/about/last_race_group_pic.png" alt="Last race group">
+    <img src="{{site.baseurl}}/images/about/scarlette.png" alt="Scarlette">
 </div>

@@ -5,7 +5,7 @@ hide: true
 show_reading_time: false
 ---
 
-Hi! My name is [Your Full Name]
+Hi! My name is Flora.
 
 ### Development Environment
 
@@ -30,26 +30,24 @@ Hi! My name is [Your Full Name]
 
 ### Class Progress
 
-> Here is my progress through coding, click to see these online
+> Here is my progress through coding! Click to see these online:
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
     <a href="{{site.baseurl}}/snake" style="text-decoration: none;">
-        <div style="background-color: #00FF00; color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            Snake Game
+        <div style="background-color: #10a510ff; color: #032703ff; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            Snake Game! 🐍
         </div>
     </a>
-    <a href="{{site.baseurl}}/turtle" style="text-decoration: none;">
-        <div style="background-color: #FF0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            Turtle
+    <a href="{{site.baseurl}}/custompong" style="text-decoration: none;">
+        <div style="background-color: #792cd8ff; color: #1d0b33ff; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            Play Pong! 🏓
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/javascript/project/memory" style="text-decoration: none;">
+        <div style="background-color: #d87c2cff; color: #291809ff; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+        Memory Game! 🃏
         </div>
     </a>
 </div>
 
 <br>
-
-<!-- Contact Section -->
-### Get in Touch
-
-> Feel free to reach out if you'd like to collaborate or learn more about our work.
-
-<p style="color: #2A7DB1;">Open Coding Society: <a href="https://opencodingsociety.com" style="color: #2A7DB1; text-decoration: underline;">Socials</a></p>
